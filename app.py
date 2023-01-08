@@ -3,6 +3,7 @@ from dash import html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 
 app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.DARKLY])
+server = app.server
 
 # the style arguments for the sidebar. We use position:fixed and a fixed width
 SIDEBAR_STYLE = {
@@ -110,6 +111,6 @@ def toggle_collapse_fixed_income(n, is_open):
 
 
 if __name__ == "__main__":
-    #app.run(debug=True)
     app.run(debug=False)
+
     

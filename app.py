@@ -61,7 +61,7 @@ sidebar = html.Div(
                             style=menu_link_style
                         )
                     ],
-                    id="collapse-menu-about", is_open=False
+                    id="collapse-menu-about", is_open=True
                 ),
                 dbc.NavLink("▾ Fixed Income", active="exact", id="drop-menu-fixed_income", style=menu_drop_style),
                 dbc.Collapse(
@@ -77,7 +77,7 @@ sidebar = html.Div(
                             style=menu_link_style
                         )
                     ],
-                    id="collapse-menu-fixed_income", is_open=False
+                    id="collapse-menu-fixed_income", is_open=True
                 )
             ],
             vertical=True,
@@ -111,6 +111,6 @@ def toggle_collapse_fixed_income(n, is_open):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
 
     

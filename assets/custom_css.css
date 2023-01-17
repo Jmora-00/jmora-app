@@ -1,0 +1,43 @@
+body{
+    background-color: black;
+    margin: 0;
+}
+.homeButton {
+	font-size: 14px; 
+	width: 250px; 
+	display: inline-block; 
+	margin-bottom: 10px; 
+	margin-left: 5px;
+	border-radius: 4px;
+	font-weight: bold;
+	height: 100px; 
+	background-color: rgb(0,0,0,0.0);
+	color: gray;
+	border: 1px solid gray;
+	display: table-cell;
+    vertical-align: middle;
+}
+
+.homeButton:hover {
+	font-size: 14px; 
+	width: 250px; 
+	display: inline-block; 
+	margin-bottom: 10px; 
+	margin-left: 5px;
+	border-radius: 4px;
+	font-weight: bold;
+	height: 100px; 
+	background-color: gray;
+	color: black;
+	border: 1px solid gray;
+	display: table-cell;
+    vertical-align: middle;
+}
+
+.blockNote {
+	margin-top: 15px; 
+	margin-bottom: 15px; 
+	background-color: rgba(22,26,29, 1);
+	border-left: 3px solid rgba(33,134,244, 1);
+	padding: 10px;
+}

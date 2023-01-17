@@ -10,6 +10,6 @@ raw_data2
 share
 non_wp_raw_data_processing.py
 non_wp_raw_data_processing2.py
-Procfile
+.gitignore
 pyenv.cfg
 sketch.pptx

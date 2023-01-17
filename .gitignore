@@ -1,0 +1,15 @@
+venv
+*.pyc
+.DS_Store
+.env
+venv_wp
+etc
+Lib
+raw_data
+raw_data2
+share
+non_wp_raw_data_processing.py
+non_wp_raw_data_processing2.py
+Procfile
+pyenv.cfg
+sketch.pptx

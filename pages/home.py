@@ -50,5 +50,3 @@ layout = html.Div(
     ],
     style=CONTENT_STYLE
 )
-
-

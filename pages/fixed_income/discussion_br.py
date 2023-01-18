@@ -73,7 +73,18 @@ layout = html.Div(
                   a yield level), but we can try to adapt it just to see how it goes. I tried the following:'''),
      dcc.Markdown('$$r_{BM}=\\frac{P_1+c-P_0}{P_0}=\\frac{P_1-P_0}{P_0}+\\frac{c}{P_0}=-ModDur\\times\\Delta y + \\frac{1}{2}Cvex(\\Delta y)^2 +\\frac{c}{P_0}$$', mathjax=True, style={'textAlign': 'center'}),
      dcc.Markdown('''Replacing the values as in the same example, we arrive at a return of -0.4225%. Far off, and even in the wrong direction, of the bond return.'''),
-     dcc.Markdown('''Johansson's method accuracy was better than I expected: it arrives at 0.3569%, just about 2bps short of the result.''')
+     dcc.Markdown('''Johansson's method accuracy was better than I expected: it arrives at 0.3801%, just about half a basis point over the result.'''),
+     dcc.Markdown('''We can analyze the results also for the 2 year bond: the implied new yield after a year is 0.6256% (or a 0.1256% increase).
+                  In this case Johansson's method is exact at 4 decimal places (0.3752%), but you start seeing differences in the fifth decimal place.
+                  The basic method is still far off, forecasting a return of 0.2511%.'''),
+     dcc.Markdown('''Finally, even though the shape of the curve can help us know what the return  '''),
+     html.H4("Summary and final remarks", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
+     dcc.Markdown('''A table collecting all the approximation results is shown below:'''),
+     dcc.Markdown('''Some final remarks: 
+                  - First and second order approximations around the yield do not account for the passage of time. Therefore, they
+                  are not useful when considering longer (than a couple of days) investment periods.
+                  - Johansson's method seems to work very good when bonds move near their implied rates in time.
+                  '''),
     ],
     style=CONTENT_STYLE
 )

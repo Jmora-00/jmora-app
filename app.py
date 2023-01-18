@@ -68,12 +68,12 @@ sidebar = html.Div(
                     [
                         dbc.NavLink(
                             dash.page_registry['pages.fixed_income.discussion_br']["name"],
-                            dash.page_registry['pages.fixed_income.discussion_br']["path"], 
+                            href=dash.page_registry['pages.fixed_income.discussion_br']["path"], 
                             style=menu_link_style
                         ),
                         dbc.NavLink(
                             dash.page_registry['pages.fixed_income.sample_app']["name"], 
-                            dash.page_registry['pages.fixed_income.sample_app']["path"],
+                            href=dash.page_registry['pages.fixed_income.sample_app']["path"],
                             style=menu_link_style
                         )
                     ],

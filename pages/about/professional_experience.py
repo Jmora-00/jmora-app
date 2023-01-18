@@ -52,7 +52,7 @@ def generate_graph_fundE():
                      "value": "Return",
                      "variable": "Manager"
                   },
-                  title='Fund E total return by manager (5Y)',
+                  title='Fund C total return by manager (2Y)',
                   template='plotly_dark')
 
     return fig
@@ -121,7 +121,9 @@ layout = html.Div(
      html.Div("""During my period as co-portfolio manager of AFP Capital's fund C our total return was 12.54%, or 
               6.09% annual. This placed us second only to Habitat, that returned 6.16% annualy, and far above
               any other managers."""),
-     dcc.Graph(id='graph-fundE', figure=generate_graph_fundE(), style={'margin':'30px'}),
+     dcc.Graph(id='graph-fundC', figure=generate_graph_fundC(), style={'margin':'30px'}),
+     html.Div("""On the whole, the funds I had most impact had superior returns compared to the rest of the managers.
+              This achievements were supported by continous innovation and a great team."""),
     ],
     style=CONTENT_STYLE
 )

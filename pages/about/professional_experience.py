@@ -52,7 +52,7 @@ def generate_graph_fundE():
                      "value": "Return",
                      "variable": "Manager"
                   },
-                  title='Fund C total return by manager (2Y)',
+                  title='Fund E total return by manager (5Y)',
                   template='plotly_dark')
     for i in range(1,6):
         fig['data'][i]['line']['width']=0.5

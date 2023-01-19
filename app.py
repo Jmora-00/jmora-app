@@ -30,15 +30,27 @@ menu_link_style = {'background-color': 'rgb(0,0,0,0.0)',
                      'textAlign': 'left',
                      'color': 'rgb(151,160,175,1)',
                      'border': '0px',
-                     'cursor':'pointer'}
+                     'cursor':'pointer',
+                     'margin-left':'15px'}
 
 sidebar = html.Div(
     [
-        html.H2("Sidebar", className="display-4"),
-        html.Hr(style={'height':'1px', 'color':'var(--highlight)', 'backgroundColor':'var(--highlight)', 'borderWidth':'1px', 'borderColor':'var(--highlight)', 'opacity':'1'}),
-        html.P(
-            "A simple sidebar layout with navigation links", className="lead"
-        ),
+        html.Img(src='/assets/plotly_logo_dark.png', height=82, width=246, className='center'),
+        # html.Hr(
+        #     style={'height':'1px', 'color':'var(--highlight)', 'backgroundColor':'var(--highlight)', 
+        #            'borderWidth':'1px', 'borderColor':'var(--highlight)', 'opacity':'1',
+        #            'margin-bottom':'1px'}),
+        dbc.NavLink("Contact me", href="https://www.linkedin.com/in/juanamora/", target="_blank", 
+                    style={'textAlign':'center','font-weight':'normal','color':'rgb(151,160,175,1)',
+                           'borderRadius':'20px',
+                           'border': '0px solid var(--grey)',
+                           'padding-top':'5px',
+                           'padding-bottom':'5px',
+                           'margin-left': '20px',
+                           'margin-right': '20px',
+                           'margin-bottom':'20px',
+                           'margin-top':'20px',
+                           'background-color': 'rgb(36,42,68,1)'}),
         dbc.Nav(
             [
                 dbc.NavLink("Home", href="/",  style=menu_link_style),

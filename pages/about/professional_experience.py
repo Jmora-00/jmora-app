@@ -54,6 +54,9 @@ def generate_graph_fundE():
                   },
                   title='Fund C total return by manager (2Y)',
                   template='plotly_dark')
+    for i in range(1,6):
+        fig['data'][i]['line']['width']=0.5
+    fig.data = fig.data[::-1] # reorder to have Capital on top
 
     return fig
 
@@ -70,7 +73,9 @@ def generate_graph_fundC():
                   },
                   title='Fund C total return by manager (2Y)',
                   template='plotly_dark')
-
+    for i in range(1,7):
+        fig['data'][i]['line']['width']=0.5
+    fig.data = fig.data[::-1] # reorder to have Capital on top
     return fig
 
 layout = html.Div(

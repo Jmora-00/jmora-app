@@ -28,14 +28,14 @@ menu_drop_style = {'background-color': 'rgb(0,0,0,0.0)',
 
 menu_link_style = {'background-color': 'rgb(0,0,0,0.0)', 
                      'textAlign': 'left',
-                     'color': 'gray',
+                     'color': 'rgb(151,160,175,1)',
                      'border': '0px',
                      'cursor':'pointer'}
 
 sidebar = html.Div(
     [
         html.H2("Sidebar", className="display-4"),
-        html.Hr(),
+        html.Hr(style={'height':'1px', 'color':'var(--highlight)', 'backgroundColor':'var(--highlight)', 'borderWidth':'1px', 'borderColor':'var(--highlight)', 'opacity':'1'}),
         html.P(
             "A simple sidebar layout with navigation links", className="lead"
         ),

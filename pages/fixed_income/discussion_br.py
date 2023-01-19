@@ -77,7 +77,12 @@ layout = html.Div(
      dcc.Markdown('''We can analyze the results also for the 2 year bond: the implied new yield after a year is 0.6256% (or a 0.1256% increase).
                   In this case Johansson's method is exact at 4 decimal places (0.3752%), but you start seeing differences in the fifth decimal place.
                   The basic method is still far off, forecasting a return of 0.2511%.'''),
-     dcc.Markdown('''Finally, even though the shape of the curve can help us know what the return  '''),
+     dcc.Markdown('''Finally, even though the shape of the curve can help us know what the actual return is, it doesn\'t 
+                  have any direct impact on the accuracy of the approximations. What factors do have an impact?'''),
+     dcc.Markdown('''* Deviation from initial yield: as expected from a Taylor expansion, the approximation works better around the initial points.'''),
+     dcc.Markdown('''* Coupon value: the higher the coupon payments, the less effective the approximation is.'''),
+     dcc.Markdown('''The effect of both variables in our 5 year bond example is shown in the following graph: 
+                  '''),
      html.H4("Summary and final remarks", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''A table collecting all the approximation results is shown below:'''),
      dcc.Markdown('''Some final remarks: 

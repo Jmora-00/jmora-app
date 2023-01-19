@@ -1,6 +1,13 @@
+:root{
+	--grey: rgb(160, 170, 186, 1);
+	--highlight: rgb(33, 134, 244, 1);
+	--backgroundcolor: rgb(14,16,18,1);
+}
+
 body{
-    background-color: black;
+    background-color: var(--backgroundcolor);
     margin: 0;
+	font-family: Segoe UI;
 }
 .homeButton {
 	font-size: 14px; 
@@ -12,8 +19,8 @@ body{
 	font-weight: bold;
 	height: 100px; 
 	background-color: rgb(0,0,0,0.0);
-	color: gray;
-	border: 1px solid gray;
+	color: var(--grey);
+	border: 1px solid var(--grey);
 	display: table-cell;
     vertical-align: middle;
 }
@@ -27,9 +34,9 @@ body{
 	border-radius: 4px;
 	font-weight: bold;
 	height: 100px; 
-	background-color: gray;
-	color: black;
-	border: 1px solid gray;
+	background-color: rgb(0,0,0,0.0);
+	color: var(--highlight);
+	border: 1px solid var(--highlight);
 	display: table-cell;
     vertical-align: middle;
 }
@@ -40,5 +47,4 @@ body{
 	background-color: rgba(22,26,29, 1);
 	border-left: 3px solid rgba(33,134,244, 1);
 	padding: 10px;
->>>>>>> 64794e9bd916d684e559152513b95fbe55401699
 }

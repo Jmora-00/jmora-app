@@ -71,11 +71,11 @@ sidebar = html.Div(
                             href=dash.page_registry['pages.fixed_income.discussion_br']["path"], 
                             style=menu_link_style
                         ),
-                        dbc.NavLink(
-                            dash.page_registry['pages.fixed_income.sample_app']["name"], 
-                            href=dash.page_registry['pages.fixed_income.sample_app']["path"],
-                            style=menu_link_style
-                        )
+                        # dbc.NavLink(
+                        #     dash.page_registry['pages.fixed_income.sample_app']["name"], 
+                        #     href=dash.page_registry['pages.fixed_income.sample_app']["path"],
+                        #     style=menu_link_style
+                        # )
                     ],
                     id="collapse-menu-fixed_income", is_open=True
                 )

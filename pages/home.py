@@ -41,9 +41,11 @@ layout = html.Div(
             dbc.Col(dbc.Button('Discussion on bond returns estimation', id='br-button', 
                                href='/fixed-income/discussion-br',
                                n_clicks=0, className='homeButton')),
-            dbc.Col(dbc.Button('Sample App', id='sample-app-button', 
-                               href='/fixed-income/sample-app',
-                               n_clicks=0, className='homeButton')),
+            dbc.Col(
+                # dbc.Button('Sample App', id='sample-app-button', 
+                #                href='/fixed-income/sample-app',
+                #                n_clicks=0, className='homeButton')
+                ),
             dbc.Col(),
         ]),
 

@@ -57,6 +57,7 @@ def generate_graph_fundE():
     for i in range(1,6):
         fig['data'][i]['line']['width']=0.5
     fig.data = fig.data[::-1] # reorder to have Capital on top
+    fig = fig.update_layout({"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(22,26,29, 1)"})
 
     return fig
 
@@ -76,6 +77,8 @@ def generate_graph_fundC():
     for i in range(1,7):
         fig['data'][i]['line']['width']=0.5
     fig.data = fig.data[::-1] # reorder to have Capital on top
+    fig = fig.update_layout({"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(22,26,29, 1)"})
+    
     return fig
 
 layout = html.Div(

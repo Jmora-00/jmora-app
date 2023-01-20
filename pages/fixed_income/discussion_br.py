@@ -2,6 +2,8 @@ import dash
 from dash import dcc, html, callback, Output, Input
 import plotly.express as px
 import dash_bootstrap_components as dbc
+import numpy as np
+import pandas as pd
 
 dash.register_page(__name__, name='Discussion on Bond Returns')
 
@@ -10,6 +12,62 @@ CONTENT_STYLE = {
     "margin-right": "22rem",
     "padding": "6rem 1rem",
 }
+
+def return_error_jm(T,c,y0,y1):
+    dt = 1
+    
+    # calculate initial price
+    T0 = np.arange(1,T+1)
+    cf0 = np.ones(T)*c*100
+    cf0[-1] = cf0[-1] + 100
+    dcf0 = (1/(1+y0)**T0)*cf0
+    P0 = np.sum(dcf0)
+    
+    # calculate price after a year
+    T1 = T0 - dt
+    T1 = T1[T1>0]
+    cf1 = cf0[T0 - dt > 0]
+    dcf1 = (1/(1+y1)**T1)*cf1
+    P1 = np.sum(dcf1)
+    
+    # calculate return
+    r = (P1+100*c)/P0 -1
+    
+    # calculate return using JM
+    mod_dur0 = np.sum(dcf0*T0)/(1+y0)/P0
+    convex0 = np.sum((T0**2+T0)*dcf0)/(1+y0)**2/P0
+    theta0 = np.log(1+y0)
+    rc0 = theta0*dt - mod_dur0*(y1-y0) + 0.5*(convex0 - mod_dur0**2)*(y1-y0)**2 \
+        + (y1-y0)*dt/(1+y0)
+    r_jm = np.exp(rc0)-1
+    
+    return (r-r_jm)*100
+
+def generate_graph_jm():
+    c_range = np.linspace(0,200,5)/1000
+    y_range = np.arange(-200,1001)/10000
+    results = pd.DataFrame(index=y_range, columns=(c_range*100).astype(str))
+    
+    for c_i in c_range:
+        for y_i in y_range:
+            results.loc[y_i,str(c_i*100)] = return_error_jm(5,c_i, 0.04, y_i)
+            
+    results.index = results.index - 0.04
+
+    fig = px.line(results, x=results.index, y=results.columns, 
+                  title='Johansson\'s Method Approximation Error',
+                  labels={
+                     "index": "d(yield)",
+                     "value": "Approx Error (%)",
+                     "variable": "Coupon"
+                  },
+                  template='plotly_dark')
+    
+    fig = fig.update_layout({"plot_bgcolor": "rgba(0, 0, 0, 0)", "paper_bgcolor": "rgba(22,26,29, 1)"})
+    
+    return fig
+    
+    
 
 layout = html.Div(
     [
@@ -79,17 +137,27 @@ layout = html.Div(
                   The basic method is still far off, forecasting a return of 0.2511%.'''),
      dcc.Markdown('''Finally, even though the shape of the curve can help us know what the actual return is, it doesn\'t 
                   have any direct impact on the accuracy of the approximations. What factors do have an impact?'''),
-     dcc.Markdown('''* Deviation from initial yield: as expected from a Taylor expansion, the approximation works better around the initial points.'''),
-     dcc.Markdown('''* Coupon value: the higher the coupon payments, the less effective the approximation is.'''),
+     dcc.Markdown('''
+                  * Deviation from initial yield: as expected from a Taylor expansion, the approximation works better around the initial points.
+                  * Coupon value: the higher the coupon payments, the less effective the approximation is.'''
+                  ),
      dcc.Markdown('''The effect of both variables in our 5 year bond example is shown in the following graph: 
                   '''),
+     dcc.Graph(id='graph-error_jm', figure=generate_graph_jm(), style={'margin':'30px'}),
+     
      html.H4("Summary and final remarks", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''A table collecting all the approximation results is shown below:'''),
-     dcc.Markdown('''Some final remarks: 
-                  - First and second order approximations around the yield do not account for the passage of time. Therefore, they
-                  are not useful when considering longer (than a couple of days) investment periods.
-                  - Johansson's method seems to work very good when bonds move near their implied rates in time.
-                  '''),
+     dcc.Markdown('''Some final remarks: '''),
+     dcc.Markdown('''
+- First and second order approximations around the yield do not account for the passage of time. Therefore, they
+are not useful when considering longer (than very brief) investment periods.
+- Johansson's method seems to work very good when bonds move near their initial yield. But as the ending 
+rate deviates from the initial yield you find rapidly increasing errors.
+- There are other factors that impact the error, for example, the investment period and duration.
+- It\'s not so easy to see at the original scale, but notice in the graph the error is not symmetrical! '''
+                  ),
+     dcc.Markdown('''How good would this approximation work when using real prices? That's also an interesting discussion. If 
+                  you have followed up to this point I'd love to have a chat and talk about this.'''),
     ],
     style=CONTENT_STYLE
 )

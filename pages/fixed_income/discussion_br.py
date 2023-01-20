@@ -1,5 +1,5 @@
 import dash
-from dash import dcc, html, callback, Output, Input
+from dash import dcc, html, callback, Output, Input, dash_table
 import plotly.express as px
 import dash_bootstrap_components as dbc
 import numpy as np
@@ -67,17 +67,55 @@ def generate_graph_jm():
     
     return fig
     
-    
+dtable = dash_table.DataTable(
+    columns=[
+        {"name": ["", "Method"], "id": "method"},
+        {"name": ["5Y bond", "dt=30d, dy=1%"], "id": "5y1"},
+        {"name": ["5Y bond", "dt=1Y, dy=1.02%"], "id": "5y2"},
+        {"name": ["2Y bond", "dt=1Y, dy=0.1256%"], "id": "2y"},
+    ],
+    data=[
+        {
+            "method": 'Exact',
+            "5y1": '-3.94%',
+            "5y2": '0.3752%',
+            "2y": '0.3752%',
+        },
+        {
+            "method": 'Johansson\'s',
+            "5y1": '-4.02%',
+            "5y2": '0.3801%',
+            "2y": '0.3752%',
+        },
+        {
+            "method": 'Basic',
+            "5y1": '-4.33%',
+            "5y2": '-0.4225%',
+            "2y": '0.2511%',
+        },
+    ],
+    merge_duplicate_headers=True,
+    style_header={
+        'backgroundColor': 'rgb(30, 30, 30)',
+        'color': 'white',
+        'textAlign':'center',
+    },
+    style_data={
+        'backgroundColor': 'rgb(50, 50, 50)',
+        'color': 'white'
+    },
+)   
 
 layout = html.Div(
     [
      html.Div("Fixed Income > Discussion on Bonds Returns", style={"font-style":"italic", "padding-bottom":'15px'}),
-     html.H3("A brief discussion on bond returns estimations", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
+     html.H3("A brief discussion on bond returns estimation", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      html.Div("""In this section I present a discussion on different methodologies to estimate bond returns.
               Estimating the exact return of a bond is commonly handled by Bloomberg or other valuation platforms,
               where going from yield to price is correctly defined but implies several implementation details.
-              This makes common (and very necessary), to estimate bond returns when studying investment strategies
+              This makes common (and very necessary) to estimate bond returns when studying investment strategies
               related to fixed income. In the following sections I'll evaluate how good these estimations are."""),
+              
      html.H4("What is the return of a 5 year duration bond when rates increase by 1%?", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''This is a common question which is usually tackled quickly by the first-order approximation,
                   but to be a little more precise we can also use the second-order approximation that includes
@@ -120,7 +158,7 @@ layout = html.Div(
                   as stated by Fabozzi : _\"The rules are simple. If forward rates are realized, all positions earn the same return\"_
                   (Fabozzi, The Handbook of Fixed Income Securities, Seventh Edition, p. 172).
                   '''),
-     dcc.Markdown('''Although he forgot to mention what return that is, I\'ll give the spoiler: the implied return in that period (kind of makes sense).
+     dcc.Markdown('''Although he forgot to mention what return that is, I\'ll give the spoiler: the return of all bonds is the implied return in that period (kind of makes sense).
                   It is not easy to see at first, and I\'ve had lengthy discussions on the topic. But for now we know that the return of all the bonds is 0.3752%.
                   '''),
      dcc.Markdown('''You don\'t have to believe me. So let's start with what we call the _exact_ price after one year.
@@ -128,7 +166,7 @@ layout = html.Div(
                   add up to 96.3752. Now remember that we also need to add the value of the coupon payment of this bond, which is 4.
                   Considering this you will end up with a return of 0.3752% (told you).'''),
      dcc.Markdown('''Now we move on to the Basic Method. This method was not thought to handle coupon payments (think of it as a instantaneous approximation around
-                  a yield level), but we can try to adapt it just to see how it goes. I tried the following:'''),
+                  a yield level), but we can try to adapt it just to see how it performs. I tried the following:'''),
      dcc.Markdown('$$r_{BM}=\\frac{P_1+c-P_0}{P_0}=\\frac{P_1-P_0}{P_0}+\\frac{c}{P_0}=-ModDur\\times\\Delta y + \\frac{1}{2}Cvex(\\Delta y)^2 +\\frac{c}{P_0}$$', mathjax=True, style={'textAlign': 'center'}),
      dcc.Markdown('''Replacing the values as in the same example, we arrive at a return of -0.4225%. Far off, and even in the wrong direction, of the bond return.'''),
      dcc.Markdown('''Johansson's method accuracy was better than I expected: it arrives at 0.3801%, just about half a basis point over the result.'''),
@@ -136,10 +174,10 @@ layout = html.Div(
                   In this case Johansson's method is exact at 4 decimal places (0.3752%), but you start seeing differences in the fifth decimal place.
                   The basic method is still far off, forecasting a return of 0.2511%.'''),
      dcc.Markdown('''Finally, even though the shape of the curve can help us know what the actual return is, it doesn\'t 
-                  have any direct impact on the accuracy of the approximations. What factors do have an impact?'''),
+                  have any *direct* impact on the accuracy of the approximations. What factors do have an impact?'''),
      dcc.Markdown('''
                   * Deviation from initial yield: as expected from a Taylor expansion, the approximation works better around the initial points.
-                  * Coupon value: the higher the coupon payments, the less effective the approximation is.'''
+                  * Coupon value: for increases in yield, the higher the coupon payments, the less effective the approximation is. The opposite is true for decreases in yield.'''
                   ),
      dcc.Markdown('''The effect of both variables in our 5 year bond example is shown in the following graph: 
                   '''),
@@ -147,17 +185,18 @@ layout = html.Div(
      
      html.H4("Summary and final remarks", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''A table collecting all the approximation results is shown below:'''),
-     dcc.Markdown('''Some final remarks: '''),
+     dtable,
+     dcc.Markdown('''Some final remarks: ''', style={'margin-top':'20px'}),
      dcc.Markdown('''
-- First and second order approximations around the yield do not account for the passage of time. Therefore, they
-are not useful when considering longer (than very brief) investment periods.
-- Johansson's method seems to work very good when bonds move near their initial yield. But as the ending 
-rate deviates from the initial yield you find rapidly increasing errors.
-- There are other factors that impact the error, for example, the investment period and duration.
-- It\'s not so easy to see at the original scale, but notice in the graph the error is not symmetrical! '''
+                  * First and second order approximations around the yield do not account for the passage of time. Therefore, they are not useful when considering longer (than very brief) investment periods.
+                  * Johansson's method seems to work very good when bonds move near their initial yield. But as the ending 
+                  rate deviates from the initial yield you find rapidly increasing errors.
+                  * There are other factors that impact the error. For example, the investment period and duration.
+                  * Note that even though the yield change for the 5Y bond is similar, the error is higher for 30 days than for 1 year. The time component actually compensates the yield component up to some point.
+                  * It\'s not so easy to see at the original scale, but notice in the graph the error is not symmetrical! '''
                   ),
      dcc.Markdown('''How good would this approximation work when using real prices? That's also an interesting discussion. If 
-                  you have followed up to this point I'd love to have a chat and talk about this.'''),
+                  you have beared with me up to this point I'd love to have a chat and talk about this.'''),
     ],
     style=CONTENT_STYLE
 )

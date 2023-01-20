@@ -106,10 +106,10 @@ layout = html.Div(
      html.Blockquote(
          [
              html.Div("The chilean pension system:", style={'font-weight':'bold', "padding-bottom":'10px'}),
-             html.Li("Chilean pension fund system is based on individual capitalization and fixed contribution.", style={'list-style-position':'outside'}),
+             dcc.Markdown('''Chilean pension fund system is based on individual capitalization and fixed contribution.", style={'list-style-position':'outside'}),
              html.Li("Each individual chooses among several privately owned pension fund managers to invest their retirement savings.", style={'list-style-position':'outside'}),
              html.Li("Pension fund managers therefore compete to maximize investment returns under a defined risk framework.", style={'list-style-position':'outside'}),
-             html.Li("Each pension fund manager has 5 different funds to choose from. They are named A to E (ordered in increasing level of risk).", style={'list-style-position':'outside'}),
+             html.Li("Each pension fund manager has 5 different funds to choose from. They are named A to E (ordered in increasing level of risk)."'''), 
          ]
          , className='blockNote'),
      html.Div("""I was in charge of local sovereign bonds and IRS strategies and trading in AFP Capital.

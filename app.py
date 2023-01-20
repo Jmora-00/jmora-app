@@ -35,7 +35,7 @@ menu_link_style = {'background-color': 'rgb(0,0,0,0.0)',
 
 sidebar = html.Div(
     [
-        html.Img(src='/assets/juan_mora_logo_dark.png', height=82, width=246, className='center'),
+        html.Img(src='/assets/juan_mora_logo_dark.PNG', height=82, width=246, className='center'),
         # html.Hr(
         #     style={'height':'1px', 'color':'var(--highlight)', 'backgroundColor':'var(--highlight)', 
         #            'borderWidth':'1px', 'borderColor':'var(--highlight)', 'opacity':'1',

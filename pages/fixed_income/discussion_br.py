@@ -116,7 +116,7 @@ layout = html.Div(
               This makes common (and very necessary) to estimate bond returns when studying investment strategies
               related to fixed income. In the following sections I'll evaluate how good these estimations are."""),
               
-     html.H4("What is the return of a 5 year duration bond when rates increase by 1%?", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
+     html.H4("What is the return of a 5 year bond when rates increase by 1%?", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''This is a common question which is usually tackled quickly by the first-order approximation,
                   but to be a little more precise we can also use the second-order approximation that includes
                   the bond\'s convexity.

@@ -88,9 +88,9 @@ layout = html.Div(
      html.Div("To review my most updated credentials please:"),
      html.Li(
              [
-                 html.Div("Visit my ", style={"display": "inline"}), 
+                 html.Div("Visit my ", style={"display": "inline",}), 
                  dcc.Link("LinkedIn Profile", href="https://www.linkedin.com/in/juanamora/", target="_blank"),     
-             ]),
+             ], style={'margin-top':'10px'}),
      html.Li(
              [
                  html.Div("Download my ", style={"display": "inline"}), 
@@ -105,11 +105,12 @@ layout = html.Div(
               context in the following note."""),
      html.Blockquote(
          [
-             html.Div("The chilean pension system:", style={'font-weight':'bold', "padding-bottom":'10px'}),
-             dcc.Markdown('''Chilean pension fund system is based on individual capitalization and fixed contribution.", style={'list-style-position':'outside'}),
-             html.Li("Each individual chooses among several privately owned pension fund managers to invest their retirement savings.", style={'list-style-position':'outside'}),
-             html.Li("Pension fund managers therefore compete to maximize investment returns under a defined risk framework.", style={'list-style-position':'outside'}),
-             html.Li("Each pension fund manager has 5 different funds to choose from. They are named A to E (ordered in increasing level of risk)."'''), 
+             html.Div("The chilean pension system:", style={'font-weight':'bold'}),
+             dcc.Markdown('''
+                          * Chilean pension funds are based on individual capitalization and a fixed contribution.
+                          * Each individual chooses among several privately owned pension fund managers to invest their retirement savings.
+                          * Pension fund managers therefore compete to maximize investment returns under a defined risk framework.
+                          * Each pension fund manager has 5 different funds to choose from. They are named A to E (ordered in increasing level of risk).'''), 
          ]
          , className='blockNote'),
      html.Div("""I was in charge of local sovereign bonds and IRS strategies and trading in AFP Capital.

@@ -18,6 +18,7 @@ layout = html.Div(
                   For this project, in particular:
      '''),
      dcc.Markdown('''
+                  * [Bo Johansson](https://www.linkedin.com/in/bo-johansson-88b63558/): the discussion on bond return\'s would not have been possible without his help and guidance.
                   * [Fernando Irarrazaval](https://www.linkedin.com/in/fernando-irarrazaval/): from databases and web hosting to graphic design. This guy knows everything.
                   * [Ruchir Sharma](https://www.linkedin.com/in/sharma-ruchir/): his macroeconomic insightfulness is only matched by his proofreading skills.
      '''),

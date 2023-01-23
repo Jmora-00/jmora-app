@@ -132,7 +132,7 @@ layout = html.Div(
                   This is basically a Taylor expansion considering variations in yield and time. I refer to 
                   this method as _'Johansson\'s Method'_ (JM):''', link_target="_blank"),
      dcc.Markdown('$$r_{J}=\\frac{\\Delta P}{P}=e^{R_c}-1$$', mathjax=True, style={'textAlign': 'center'}),
-     dcc.Markdown('$\\text{Where   } \ \  R_c=\\theta t - ModDur \\times \\Delta y + \\frac{1}{2}(Cvex - ModDur^2)(\\Delta y)^2 + (1+y)^{-1} \Delta y \Delta t$', mathjax=True, style={'textAlign': 'center'}),
+     dcc.Markdown('$\\text{Where   } \ \  R_c=\\theta \\Delta t - ModDur \\times \\Delta y + \\frac{1}{2}(Cvex - ModDur^2)(\\Delta y)^2 + (1+y)^{-1} \Delta y \Delta t$', mathjax=True, style={'textAlign': 'center'}),
      dcc.Markdown('''We can compare the 2 methods we have so far in a simple (theoretical) framework:'''),
      html.Blockquote("""Consider a 5 year bond that pays coupon annually at a 4% rate, 
                   priced initially at par with a 30/360 convention. After 30 days, the bond yield has increased 

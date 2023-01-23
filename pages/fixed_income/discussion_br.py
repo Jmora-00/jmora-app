@@ -54,10 +54,10 @@ def generate_graph_jm():
             
     results.index = results.index - 0.04
 
-    fig = px.line(results, x=results.index, y=results.columns, 
+    fig = px.line(results, x=results.index*100, y=results.columns, 
                   title='Johansson\'s Method Approximation Error',
                   labels={
-                     "index": "d(yield)",
+                     "index": "d(yield) (%)",
                      "value": "Approx Error (%)",
                      "variable": "Coupon"
                   },
@@ -83,7 +83,7 @@ dtable = dash_table.DataTable(
         },
         {
             "method": 'Johansson\'s',
-            "5y1": '-4.02%',
+            "5y1": '-3.94%',
             "5y2": '0.3801%',
             "2y": '0.3752%',
         },
@@ -141,8 +141,8 @@ layout = html.Div(
                   The _exact_ price after the 30 days and 1% increase is calculated as the sum of the present values of
                   the future cashflows (which, as mentioned before, in real life is never so simple). This gives us a 
                   price of 96.06 or a exact return of -3.94%. The Basic Method claims the return is -4.33%, 
-                  and Johansson\'s method approximates -4.02%. As expected, Johansson\'s method is superior
-                  by about 30bps (if you don't want them, I'll gladly take them!).'''),
+                  and Johansson\'s method approximates -3.94% (the error is 0.0005% or 0.05 bps). As expected, Johansson\'s method is superior
+                  by about 40bps (if you don't want them, I'll gladly take them!).'''),
                   
      html.H4("Does the shape of the curve matter?", style={'margin-top':'30px', 'margin-bottom':'10px', 'font-weight':'bold'}),
      dcc.Markdown('''So far we have made no assumptions on the curve term-structure, but it indeed has some important 
@@ -192,11 +192,12 @@ layout = html.Div(
                   * Johansson's method seems to work very good when bonds move near their initial yield. But as the ending 
                   rate deviates from the initial yield you find rapidly increasing errors.
                   * There are other factors that impact the error. For example, the investment period and duration.
-                  * Note that even though the yield change for the 5Y bond is similar, the error is higher for 30 days than for 1 year. The time component actually compensates the yield component up to some point.
                   * It\'s not so easy to see at the original scale, but notice in the graph the error is not symmetrical! '''
                   ),
      dcc.Markdown('''How good would this approximation work when using real prices? That's also an interesting discussion. If 
                   you have beared with me up to this point I'd love to have a chat and talk about this.'''),
+     dcc.Markdown('''_Note: A mistake in my calculations was spotted by Bo Johansson. This affected the calculations
+                  of the 5Y bond returns after 30 days. The error has now been corrected._''', style={'margin-top':'60px', 'text-alignment':'right'}),
     ],
     style=CONTENT_STYLE
 )

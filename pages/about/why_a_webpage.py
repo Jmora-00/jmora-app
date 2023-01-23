@@ -33,7 +33,7 @@ layout = html.Div(
      dcc.Markdown('''
                   * Practice my Python coding skills.
                   * Refresh my knowdledge of Dash, which has been through several updates since the first time I used it.
-                  * Learn a little about HTML, some Markdown, and a lot of CSS and it\'s magic.
+                  * Learn a little about HTML, some Markdown, and a lot of CSS and its magic.
                   * Apply data scraping techniques and data processing.
                   * Learn about the deployment process and optimizing resources.
                   * Practice version control: the source code of this project is [hosted on GitHub](https://github.com/Jmora-00/jmora-app.git), please don\'t look too much into it.

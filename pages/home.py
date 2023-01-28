@@ -3,14 +3,6 @@ from dash import dcc, html, callback, Output, Input
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-# the styles for the main content position it to the right of the sidebar and
-# add some padding.
-CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "22rem",
-    "padding": "6rem 1rem",
-}
-
 
 dash.register_page(__name__, path='/', name='Home') # '/' is home page
 
@@ -50,5 +42,5 @@ layout = html.Div(
         ]),
 
     ],
-    style=CONTENT_STYLE
+    className='content',
 )

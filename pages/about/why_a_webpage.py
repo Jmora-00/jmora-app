@@ -2,12 +2,6 @@ import dash
 from dash import dcc, html, callback, Output, Input
 import dash_bootstrap_components as dbc
 
-CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "22rem",
-    "padding": "6rem 1rem",
-}
-
 
 dash.register_page(__name__, name='Why a webpage?')
 
@@ -39,5 +33,5 @@ layout = html.Div(
                   * Practice version control: the source code of this project is [hosted on GitHub](https://github.com/Jmora-00/jmora-app.git), please don\'t look too much into it.
      '''),
     ],
-    style=CONTENT_STYLE
+    className='content',
 )

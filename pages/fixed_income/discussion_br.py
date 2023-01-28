@@ -7,12 +7,6 @@ import pandas as pd
 
 dash.register_page(__name__, name='Discussion on Bond Returns')
 
-CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "22rem",
-    "padding": "6rem 1rem",
-}
-
 def return_error_jm(T,c,y0,y1):
     dt = 1
     
@@ -199,5 +193,5 @@ layout = html.Div(
      dcc.Markdown('''_Note: A mistake in my calculations was spotted by Bo Johansson. This affected the calculations
                   of the 5Y bond returns after 30 days. The error has now been corrected._''', style={'margin-top':'60px', 'text-alignment':'right'}),
     ],
-    style=CONTENT_STYLE
+    className='content',
 )

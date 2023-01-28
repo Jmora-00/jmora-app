@@ -4,11 +4,6 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 import pandas as pd
 
-CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "22rem",
-    "padding": "6rem 1rem",
-}
 
 dash.register_page(__name__, name='Professional Experience')
 
@@ -134,6 +129,6 @@ layout = html.Div(
      html.Div("""On the whole, the funds I had most impact had superior returns compared to the rest of the managers.
               This achievements were supported by continous innovation and a great team."""),
     ],
-    style=CONTENT_STYLE
+    className='content',
 )
               

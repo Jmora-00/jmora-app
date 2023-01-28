@@ -2,11 +2,6 @@ import dash
 from dash import dcc, html, callback, Output, Input
 import dash_bootstrap_components as dbc
 
-CONTENT_STYLE = {
-    "margin-left": "20rem",
-    "margin-right": "22rem",
-    "padding": "6rem 1rem",
-}
 
 dash.register_page(__name__, name='Acknowledgments')
 
@@ -23,5 +18,5 @@ layout = html.Div(
                   * [Ruchir Sharma](https://www.linkedin.com/in/sharma-ruchir/): his macroeconomic insightfulness is only matched by his proofreading skills.
      '''),
     ],
-    style=CONTENT_STYLE
+    className='content',
 )

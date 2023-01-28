@@ -8,7 +8,16 @@ body{
     background-color: var(--backgroundcolor);
     margin: 0;
 	font-family: Segoe UI;
+	overflow-x:auto;
 }
+
+.content {
+	margin-left: 20rem;
+    margin-right: 22rem;
+    padding: 6rem 1rem;
+    min-width: 800px;
+}
+
 .homeButton {
 	font-size: 14px; 
 	width: 250px; 
